@@ -1,33 +1,34 @@
 import React from 'react'
 import {View, Text, StyleSheet, Image} from 'react-native'
+import WeatherSearch from './weatherSearch'
 
-const WeatherInfo = () => {
+const WeatherInfo = ({weatherData}) => {
     return (
         <View style={styles.marginTop20}>
             <Text style={styles.text}>
-                The weather of Pontianak
+                The weather of {weatherData.name}
             </Text>
             <Text style={[styles.temperature, styles.marginTop20]}>
-                15 C
+                {weatherData.main.temp}°C
             </Text>
             <View style={[styles.rowContainer, styles.marginTop20]}>
                 <Image
-                    source={{ uri:'https://openweathermap.org/img/w/04d.png'}}
+                    source={{ uri:`https://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}}
                     style={styles.weatherIcon}
                 />
                 <Text style={[styles.text, styles.bold]}>
-                    Clouds
+                    {weatherData.weather[0].main}
                 </Text>
             </View>
             <Text style={styles.text}>
-                overcast clouds
+                {weatherData.weather[0].description}
             </Text>
             <View style={[styles.rowContainer, styles.marginTop20]}>
                 <Text style={[styles.text, styles.bold]}>
                     Visibility: 
                 </Text>
                 <Text style={[styles.text, styles.marginLeft15]}>
-                    10 km
+                    {weatherData.visibility}km
                 </Text>
             </View>
             <View style={[styles.rowContainer, styles.marginTop20]}>
@@ -35,7 +36,7 @@ const WeatherInfo = () => {
                     Wind Speed: 
                 </Text>
                 <Text style={[styles.text, styles.marginLeft15]}>
-                    10 m/s
+                    {weatherData.wind.speed}m/s
                 </Text>
             </View>
         </View>
